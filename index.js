@@ -22,7 +22,20 @@ const isInvalidDate = (date) => date.toUTCString() === "Invalid Date"
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+    let date = new Date(req.params.date);
+
+    if(isInvalidDate(date)) {
+      date = new Date(+req.params.date)
+    }
+
+    if(isInvalidDate(date)) {
+      res.json({error: "Invalid Data"})
+    }
+
+    res.json({
+      unix: date.getTime(),
+      utc: date.toUTCString()
+    })
 });
 
 
