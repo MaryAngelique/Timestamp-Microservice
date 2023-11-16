@@ -38,6 +38,12 @@ app.get("/api/hello", function (req, res) {
     })
 });
 
+app.get("/api", (req, res) => {
+  res.json({
+    unix: new Date().getTime(),
+    utc:  new Date().toUTCString()
+  })
+})
 
 
 // listen for requests :)
